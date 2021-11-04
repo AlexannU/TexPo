@@ -1,7 +1,7 @@
 package sample.models;
 
 public class Order {
-    private int id;
+    private Integer id;
     private int client_id;
     private int manager_id;
     private int cost;
@@ -9,8 +9,8 @@ public class Order {
     private long compl_date;
     private boolean status;
 
-    public Order(int id, int client_id, int manager_id, int cost, long reg_date, long compl_date, boolean status) {
-        this.id = id;
+    public Order( int client_id, int manager_id, int cost, long reg_date, long compl_date, boolean status) {
+
         this.client_id = client_id;
         this.manager_id = manager_id;
         this.cost = cost;
@@ -19,11 +19,11 @@ public class Order {
         this.status = status;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

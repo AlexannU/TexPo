@@ -90,8 +90,8 @@ public class ClientControllerChoosing {
         accessoriesForDatabase.add(databaseHdd.get(choiceboxHDD.getSelectionModel().getSelectedIndex()));
         accessoriesForDatabase.add(databaseMotherBoard.get(choiceboxMotherboard.getSelectionModel().getSelectedIndex()));
         accessoriesForDatabase.add(databaseSoundCard.get(choiceboxSoundCard.getSelectionModel().getSelectedIndex()));
-        Order order = new Order(0,1,1,5600,1635294633000L, 1635294633000L,false);
-        database.addOrder(order,accessoriesForDatabase);
+        Order order = new Order(1,1,5600,1635294633000L, 1635294633000L,false);
+        //database.addOrder(order,accessoriesForDatabase);
 
         buttonMakeOrder.getScene().getWindow().hide();
 
@@ -102,6 +102,13 @@ public class ClientControllerChoosing {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
+        ClientControllerOrdering cco = loader.getController();
+        cco.sendOrderList(accessoriesForDatabase,Integer.parseInt(labelTotalCost.getText()));
+
+
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -127,7 +134,7 @@ public class ClientControllerChoosing {
         int sum=0;
 
 
-        System.out.println(databaseBodyAndBlock.get(choiceboxBB.getSelectionModel().getSelectedIndex()).getCost());
+        //System.out.println(databaseBodyAndBlock.get(choiceboxBB.getSelectionModel().getSelectedIndex()).getCost());
         switch (((ChoiceBox) actionEvent.getSource()).getId()){
             case "choiceboxBB":
                 temp[0]=databaseBodyAndBlock.get(choiceboxBB.getSelectionModel().getSelectedIndex()).getCost();
@@ -164,11 +171,11 @@ public class ClientControllerChoosing {
         labelTotalCost.setText(Integer.toString(sum));
     }
     private ArrayList<String> getListOfAccessoriesName(ArrayList<Accessories> accessories){
-        ArrayList<String> bodyAndBlockNames = new ArrayList<>();
+        ArrayList<String> accessoriesNames = new ArrayList<>();
         for (Accessories accessory : accessories) {
-            bodyAndBlockNames.add(accessory.getName());
+            accessoriesNames.add(accessory.getName());
         }
-        return bodyAndBlockNames;
+        return accessoriesNames;
     }
     private void addItemsAndSetOnAction(ChoiceBox<String> choiceBox,ArrayList<Accessories> accessories){
         choiceBox.getItems().addAll(getListOfAccessoriesName(accessories));
